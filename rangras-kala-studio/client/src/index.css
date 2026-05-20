@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-text font-body;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display;
+  }
+}
+
+.font-accent {
+  font-family: 'Dancing Script', cursive;
+}
+
+@keyframes fluid {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.bg-fluid-animate {
+  background: linear-gradient(-45deg, #2C1810, #D4A853, #1A1209, #8c5b3e);
+  background-size: 400% 400%;
+  animation: fluid 12s ease infinite;
+}

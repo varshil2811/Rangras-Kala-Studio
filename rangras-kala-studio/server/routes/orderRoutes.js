@@ -1,0 +1,37 @@
+const express = require('express');
+const router = express.Router();
+const Order = require('../models/Order');
+
+router.get('/', async (req, res) => {
+  try {
+    const orders = await Order.find().sort({ createdAt: -1 });
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.post('/', async (req, res) => {
+  try {
+    const newOrder = new Order({
+      customerName: req.body.customerName,
+      totalAmount: req.body.totalAmount,
+      orderStatus: 'pending'
+    });
+    const savedOrder = await newOrder.save();
+    res.status(201).json(savedOrder);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.put('/:id', async (req, res) => {
+  try {
+    const order = await Order.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.json(order);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+module.exports = router;
