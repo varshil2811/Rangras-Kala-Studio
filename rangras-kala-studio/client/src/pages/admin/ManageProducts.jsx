@@ -10,7 +10,7 @@ const ManageProducts = () => {
 
   const fetchProducts = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/api/products');
+      const { data } = await axios.get('https://rangras-kala-studio.onrender.com/api/products');
       setProducts(data);
     } catch (error) {
       const errorMessage = error.response?.data?.message || error.message || 'Failed to load products';
@@ -27,7 +27,7 @@ const ManageProducts = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/products/${id}`);
+        await axios.delete(`https://rangras-kala-studio.onrender.com/api/products/${id}`);
         toast.success('Product deleted successfully');
         fetchProducts(); // Refresh list
       } catch (error) {

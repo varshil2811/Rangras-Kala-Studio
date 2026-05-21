@@ -19,7 +19,7 @@ const AddProduct = () => {
 
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
-    
+
     if (type === 'file') {
       setFormData(prev => ({
         ...prev,
@@ -49,7 +49,7 @@ const AddProduct = () => {
         }
       });
 
-      await axios.post('http://localhost:5000/api/products', submitData, {
+      await axios.post('https://rangras-kala-studio.onrender.com/api/products', submitData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

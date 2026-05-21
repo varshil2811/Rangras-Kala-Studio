@@ -17,7 +17,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchDashboard = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/api/dashboard');
+        const { data } = await axios.get('https://rangras-kala-studio.onrender.com/api/dashboard');
         setStats(data);
       } catch (error) {
         toast.error('Failed to load dashboard data');
@@ -105,9 +105,9 @@ const Dashboard = () => {
                             <td className="px-6 py-4">₹{order.totalAmount}</td>
                             <td className="px-6 py-4">
                               <span className={`px-2 py-1 rounded-full text-xs font-medium ${order.orderStatus === 'delivered' ? 'bg-green-100 text-green-800' :
-                                  order.orderStatus === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                                    order.orderStatus === 'cancelled' ? 'bg-red-100 text-red-800' :
-                                      'bg-blue-100 text-blue-800'
+                                order.orderStatus === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                                  order.orderStatus === 'cancelled' ? 'bg-red-100 text-red-800' :
+                                    'bg-blue-100 text-blue-800'
                                 }`}>
                                 {order.orderStatus}
                               </span>

@@ -43,8 +43,8 @@ const Navbar = () => {
   const NavItem = ({ item }) => {
     const isActive = location.pathname === item.path || (item.path !== '/' && location.pathname.startsWith(item.path));
     return (
-      <Link 
-        to={item.path} 
+      <Link
+        to={item.path}
         className={`relative px-3 py-2 text-sm font-medium transition-colors duration-300 group ${isActive ? 'text-secondary' : 'text-text hover:text-secondary'}`}
       >
         {item.name}
@@ -57,14 +57,14 @@ const Navbar = () => {
     <nav className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-background/90 backdrop-blur-md shadow-md py-2' : 'bg-background py-4'}`}>
       {/* Decorative Top Line */}
       <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-accent via-secondary to-primary"></div>
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          
+
           {/* Logo */}
           <Link to="/" className="flex-shrink-0 flex items-center gap-2 group">
-            <motion.div 
-              whileHover={{ rotate: 180 }} 
+            <motion.div
+              whileHover={{ rotate: 180 }}
               transition={{ duration: 0.6, ease: "easeInOut" }}
               className="text-secondary"
             >
@@ -92,7 +92,7 @@ const Navbar = () => {
                 <Link to="/cart" className="text-text hover:text-secondary transition-colors relative group duration-300">
                   <FiShoppingCart className="h-5 w-5 group-hover:scale-110 transition-transform" />
                   {cartCount > 0 && (
-                    <motion.span 
+                    <motion.span
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       className="absolute -top-2 -right-2 bg-secondary text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center shadow-md"
@@ -127,8 +127,8 @@ const Navbar = () => {
                 </Link>
               )}
             </div>
-            <button 
-              onClick={() => setIsOpen(!isOpen)} 
+            <button
+              onClick={() => setIsOpen(!isOpen)}
               className="text-primary p-2 hover:bg-accent/20 rounded-lg transition-colors focus:outline-none"
             >
               {isOpen ? <FiX className="h-6 w-6" /> : <FiMenu className="h-6 w-6" />}
@@ -140,7 +140,7 @@ const Navbar = () => {
       {/* Mobile Menu Slide-Down */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -150,9 +150,9 @@ const Navbar = () => {
               {currentLinks.map((link) => {
                 const isActive = location.pathname === link.path || (link.path !== '/' && location.pathname.startsWith(link.path));
                 return (
-                  <Link 
+                  <Link
                     key={link.name}
-                    to={link.path} 
+                    to={link.path}
                     className={`block px-4 py-3 rounded-xl font-medium transition-colors ${isActive ? 'bg-secondary/10 text-secondary' : 'text-text hover:bg-accent/10'}`}
                     onClick={() => setIsOpen(false)}
                   >
@@ -160,19 +160,19 @@ const Navbar = () => {
                   </Link>
                 );
               })}
-              
+
               <div className="pt-4 mt-4 border-t border-accent/20">
                 {isAdminRoute ? (
-                  <button 
-                    onClick={() => { logout(); setIsOpen(false); }} 
+                  <button
+                    onClick={() => { logout(); setIsOpen(false); }}
                     className="w-full flex items-center justify-center gap-2 px-4 py-3 text-red-500 bg-red-50 rounded-xl font-medium"
                   >
                     <FiLogOut /> Logout
                   </button>
                 ) : (
-                  <Link 
-                    to={user ? "/admin/dashboard" : "/admin"} 
-                    className="flex items-center justify-center gap-2 px-4 py-3 text-primary bg-accent/20 rounded-xl font-medium" 
+                  <Link
+                    to={user ? "/admin/dashboard" : "/admin"}
+                    className="flex items-center justify-center gap-2 px-4 py-3 text-primary bg-accent/20 rounded-xl font-medium"
                     onClick={() => setIsOpen(false)}
                   >
                     <FiUser /> {user ? "Admin Dashboard" : "Admin Login"}

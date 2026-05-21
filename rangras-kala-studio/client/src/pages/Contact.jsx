@@ -36,7 +36,7 @@ const Contact = () => {
 
     setLoading(true);
     try {
-      await axios.post("http://localhost:5000/api/messages", {
+      await axios.post("https://rangras-kala-studio.onrender.com/api/messages", {
         name: `${formData.firstName} ${formData.lastName}`.trim(),
         email: formData.email,
         message: formData.message
@@ -135,15 +135,15 @@ const Contact = () => {
             <motion.div variants={fadeIn} className="relative group h-full">
               {/* Glowing Border Effect behind the card */}
               <div className="absolute -inset-0.5 bg-gradient-to-r from-secondary via-accent to-secondary rounded-2xl blur opacity-20 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
-              
+
               <div className="relative rounded-2xl p-8 shadow-2xl shadow-primary/20 overflow-hidden flex flex-col items-start min-h-[380px] h-full bg-primary border border-white/10">
                 {/* Background Image with Parallax effect on hover */}
                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1615529182904-14819c35db37?w=800&auto=format&fit=crop&q=80')] bg-cover bg-center group-hover:scale-110 transition-transform duration-1000 ease-in-out opacity-80"></div>
-                
+
                 {/* Rich Dark Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1A1209] via-[#1A1209]/70 to-transparent"></div>
                 <div className="absolute inset-0 bg-secondary/5 mix-blend-overlay"></div>
-                
+
                 {/* Floating Badge */}
                 <div className="absolute top-6 right-6 bg-white/10 backdrop-blur-md border border-white/20 text-secondary text-[10px] sm:text-xs uppercase tracking-widest px-3 py-1.5 rounded-full font-medium flex items-center gap-2 z-20 shadow-lg">
                   <div className="relative flex items-center justify-center">
@@ -159,11 +159,11 @@ const Contact = () => {
                     Bespoke <br />
                     <span className="italic font-accent text-[2.5rem] leading-none text-secondary group-hover:text-white transition-colors duration-500">Creations</span>
                   </h3>
-                  
+
                   <p className="text-sm text-gray-300 mb-8 leading-relaxed font-light pr-4 group-hover:text-gray-200 transition-colors duration-500">
                     From personalized name plates to unique wedding favors, let our master artisans bring your unique vision to life with passion.
                   </p>
-                  
+
                   <div className="w-full">
                     <a
                       href="https://wa.me/919023239808"
@@ -175,7 +175,7 @@ const Contact = () => {
                         <FaWhatsapp className="text-2xl text-[#25D366] group-hover/btn:scale-110 transition-transform duration-300" />
                         Custom Order via WhatsApp
                       </span>
-                      
+
                       {/* Arrow animation */}
                       <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover/btn:bg-secondary group-hover/btn:text-primary transition-all duration-300 group-hover/btn:translate-x-1">
                         <span className="font-bold">→</span>

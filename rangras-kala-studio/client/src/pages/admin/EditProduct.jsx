@@ -21,7 +21,7 @@ const EditProduct = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5000/api/products/${id}`);
+        const { data } = await axios.get(`https://rangras-kala-studio.onrender.com/api/products/${id}`);
         setFormData({
           name: data.name,
           category: data.category,
@@ -53,7 +53,7 @@ const EditProduct = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.put(`http://localhost:5000/api/products/${id}`, formData);
+      await axios.put(`https://rangras-kala-studio.onrender.com/api/products/${id}`, formData);
       toast.success('Product updated successfully!');
       navigate('/admin/products');
     } catch (error) {

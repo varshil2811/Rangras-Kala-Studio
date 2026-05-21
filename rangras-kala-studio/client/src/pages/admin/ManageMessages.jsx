@@ -9,7 +9,7 @@ const ManageMessages = () => {
 
   const fetchMessages = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/api/messages');
+      const { data } = await axios.get('https://rangras-kala-studio.onrender.com/api/messages');
       setMessages(data);
     } catch (error) {
       toast.error('Failed to load messages');
@@ -24,7 +24,7 @@ const ManageMessages = () => {
 
   const toggleReadStatus = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/messages/${id}/read`);
+      await axios.put(`https://rangras-kala-studio.onrender.com/api/messages/${id}/read`);
       fetchMessages();
     } catch (error) {
       toast.error('Failed to update status');
@@ -34,7 +34,7 @@ const ManageMessages = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this message?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/messages/${id}`);
+        await axios.delete(`https://rangras-kala-studio.onrender.com/api/messages/${id}`);
         toast.success('Message deleted');
         fetchMessages();
       } catch (error) {

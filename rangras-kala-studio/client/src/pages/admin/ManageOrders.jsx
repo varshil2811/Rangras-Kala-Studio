@@ -8,7 +8,7 @@ const ManageOrders = () => {
 
   const fetchOrders = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/api/orders');
+      const { data } = await axios.get('https://rangras-kala-studio.onrender.com/api/orders');
       setOrders(data);
     } catch (error) {
       toast.error('Failed to load orders');
@@ -23,7 +23,7 @@ const ManageOrders = () => {
 
   const handleStatusChange = async (id, status) => {
     try {
-      await axios.put(`http://localhost:5000/api/orders/${id}`, { orderStatus: status });
+      await axios.put(`https://rangras-kala-studio.onrender.com/api/orders/${id}`, { orderStatus: status });
       toast.success('Order status updated');
       fetchOrders();
     } catch (error) {

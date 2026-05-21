@@ -43,7 +43,7 @@ const Shop = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/api/products');
+        const { data } = await axios.get('https://rangras-kala-studio.onrender.com/api/products');
         // Only show active products in the shop
         const activeProducts = data.filter(p => p.isActive);
         setProducts(activeProducts);

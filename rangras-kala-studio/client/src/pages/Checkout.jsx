@@ -37,7 +37,7 @@ const Checkout = () => {
     setLoading(true);
 
     try {
-      await axios.post('http://localhost:5000/api/orders', {
+      await axios.post('https://rangras-kala-studio.onrender.com/api/orders', {
         customerName: formData.name,
         totalAmount: getCartTotal()
       });
