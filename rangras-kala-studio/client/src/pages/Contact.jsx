@@ -132,22 +132,58 @@ const Contact = () => {
               </div>
             </motion.div>
 
-            <motion.div variants={fadeIn} className="bg-primary text-background rounded-2xl p-8 shadow-xl shadow-primary/10 flex flex-col items-start relative overflow-hidden group">
-              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay"></div>
+            <motion.div variants={fadeIn} className="relative group h-full">
+              {/* Glowing Border Effect behind the card */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-secondary via-accent to-secondary rounded-2xl blur opacity-20 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
+              
+              <div className="relative rounded-2xl p-8 shadow-2xl shadow-primary/20 overflow-hidden flex flex-col items-start min-h-[380px] h-full bg-primary border border-white/10">
+                {/* Background Image with Parallax effect on hover */}
+                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1615529182904-14819c35db37?w=800&auto=format&fit=crop&q=80')] bg-cover bg-center group-hover:scale-110 transition-transform duration-1000 ease-in-out opacity-80"></div>
+                
+                {/* Rich Dark Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1A1209] via-[#1A1209]/70 to-transparent"></div>
+                <div className="absolute inset-0 bg-secondary/5 mix-blend-overlay"></div>
+                
+                {/* Floating Badge */}
+                <div className="absolute top-6 right-6 bg-white/10 backdrop-blur-md border border-white/20 text-secondary text-[10px] sm:text-xs uppercase tracking-widest px-3 py-1.5 rounded-full font-medium flex items-center gap-2 z-20 shadow-lg">
+                  <div className="relative flex items-center justify-center">
+                    <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-ping absolute"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-secondary relative"></span>
+                  </div>
+                  100% Handcrafted
+                </div>
 
-              <h3 className="text-xl font-display font-semibold mb-3 relative z-10 text-secondary">Custom Orders</h3>
-              <p className="text-base text-background/90 mb-6 leading-relaxed relative z-10">
-                Looking for personalized name plates, wedding favors, or bespoke resin decor? Let's bring your vision to life!
-              </p>
-              <a
-                href="https://wa.me/919023239808"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative z-10 inline-flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-xl font-medium hover:bg-[#20bd5a] transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-[#25D366]/30 w-full justify-center"
-              >
-                <FaWhatsapp className="text-2xl animate-pulse" />
-                <span className="text-lg">Chat on WhatsApp</span>
-              </a>
+                {/* Content */}
+                <div className="mt-auto w-full relative z-10 flex flex-col">
+                  <h3 className="text-3xl font-display font-semibold mb-2 text-white tracking-wide group-hover:text-accent transition-colors duration-500">
+                    Bespoke <br />
+                    <span className="italic font-accent text-[2.5rem] leading-none text-secondary group-hover:text-white transition-colors duration-500">Creations</span>
+                  </h3>
+                  
+                  <p className="text-sm text-gray-300 mb-8 leading-relaxed font-light pr-4 group-hover:text-gray-200 transition-colors duration-500">
+                    From personalized name plates to unique wedding favors, let our master artisans bring your unique vision to life with passion.
+                  </p>
+                  
+                  <div className="w-full">
+                    <a
+                      href="https://wa.me/919023239808"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/btn relative overflow-hidden flex items-center justify-between bg-white/5 backdrop-blur-md border border-white/10 text-white px-5 py-4 rounded-xl font-medium hover:bg-secondary/20 hover:border-secondary/50 transition-all duration-300 w-full shadow-[0_8px_32px_0_rgba(0,0,0,0.2)]"
+                    >
+                      <span className="text-[14.5px] sm:text-[15px] tracking-wide flex items-center gap-3 font-semibold">
+                        <FaWhatsapp className="text-2xl text-[#25D366] group-hover/btn:scale-110 transition-transform duration-300" />
+                        Custom Order via WhatsApp
+                      </span>
+                      
+                      {/* Arrow animation */}
+                      <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover/btn:bg-secondary group-hover/btn:text-primary transition-all duration-300 group-hover/btn:translate-x-1">
+                        <span className="font-bold">→</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
             </motion.div>
           </motion.div>
 

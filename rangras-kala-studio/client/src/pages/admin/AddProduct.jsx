@@ -13,11 +13,21 @@ const AddProduct = () => {
     price: '',
     stock: '',
     isCustomOrder: false,
-    isActive: true
+    isActive: true,
+    images: []
   });
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, type, checked, files } = e.target;
+    
+    if (type === 'file') {
+      setFormData(prev => ({
+        ...prev,
+        [name]: Array.from(files)
+      }));
+      return;
+    }
+
     setFormData(prev => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value
@@ -28,7 +38,22 @@ const AddProduct = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/products', formData);
+      const submitData = new FormData();
+      Object.keys(formData).forEach(key => {
+        if (key === 'images') {
+          formData.images.forEach(file => {
+            submitData.append('images', file);
+          });
+        } else {
+          submitData.append(key, formData[key]);
+        }
+      });
+
+      await axios.post('http://localhost:5000/api/products', submitData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
       toast.success('Product added successfully!');
       navigate('/admin/products');
     } catch (error) {
@@ -80,9 +105,9 @@ const AddProduct = () => {
         </div>
 
         <div className="mb-8">
-          <label className="block text-sm font-medium text-gray-700 mb-2">Product Images (Coming Soon)</label>
-          <input disabled type="file" multiple accept="image/*" className="w-full border border-gray-300 rounded-md p-2 outline-none bg-gray-50" />
-          <p className="text-sm text-gray-500 mt-1">Image upload will be available when cloud storage is connected.</p>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Product Images</label>
+          <input type="file" name="images" multiple accept="image/*" onChange={handleChange} className="w-full border border-gray-300 rounded-md p-2 outline-none focus:border-secondary bg-white" />
+          <p className="text-sm text-gray-500 mt-1">You can select multiple images to upload for this product.</p>
         </div>
 
         <div className="space-y-4 mb-8">
