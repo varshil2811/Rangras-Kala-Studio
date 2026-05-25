@@ -34,15 +34,8 @@ exports.createProduct = async (req, res) => {
 
     // Handle uploaded images
     if (req.files && req.files.length > 0) {
-      // Create URLs for the uploaded files
-      // Use standard URL format for static files
-      productData.images = req.files.map(file => {
-        // Construct the URL path (assuming server runs on standard API URL)
-        // Since we'll fetch them from the frontend, we just store the relative path or full backend URL
-        // A relative path is usually better, but for simplicity here we can store the full path
-        const baseUrl = req.protocol + '://' + req.get('host');
-        return `${baseUrl}/uploads/${file.filename}`;
-      });
+      // Cloudinary automatically returns the URL in file.path
+      productData.images = req.files.map(file => file.path);
     }
 
     const product = new Product(productData);
