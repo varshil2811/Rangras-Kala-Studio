@@ -68,7 +68,7 @@ const ManageProducts = () => {
                 <tr key={product._id}>
                   <td className="px-6 py-4 font-medium text-gray-900">{product.name}</td>
                   <td className="px-6 py-4 capitalize">{product.category.replace('-', ' ')}</td>
-                  <td className="px-6 py-4">₹{product.price}</td>
+                  <td className="px-6 py-4"><span className="font-sans mr-0.5">₹</span>{product.price}</td>
                   <td className="px-6 py-4">{product.stock}</td>
                   <td className="px-6 py-4">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${product.isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>

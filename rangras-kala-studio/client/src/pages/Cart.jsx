@@ -31,7 +31,7 @@ const Cart = () => {
                   <img src={item.product.images[0]} alt={item.product.name} className="w-24 h-24 object-cover rounded-md" />
                   <div className="flex-1 text-center sm:text-left">
                     <h3 className="text-lg font-bold text-primary">{item.product.name}</h3>
-                    <p className="text-gray-500 font-bold mb-2">₹{item.product.price}</p>
+                    <p className="text-gray-500 font-bold mb-2"><span className="font-sans text-secondary/80 mr-0.5">₹</span>{item.product.price}</p>
                     {item.customNote && (
                       <p className="text-sm text-gray-600 bg-gray-50 p-2 rounded italic">Note: {item.customNote}</p>
                     )}
@@ -59,7 +59,7 @@ const Cart = () => {
             <div className="space-y-4 mb-6">
               <div className="flex justify-between">
                 <span className="text-gray-600">Subtotal</span>
-                <span className="font-bold">₹{getCartTotal()}</span>
+                <span className="font-bold"><span className="font-sans text-secondary/80 mr-0.5">₹</span>{getCartTotal()}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-600">Shipping</span>
@@ -67,7 +67,7 @@ const Cart = () => {
               </div>
               <div className="border-t border-gray-200 pt-4 flex justify-between">
                 <span className="font-bold text-lg text-primary">Total</span>
-                <span className="font-bold text-xl text-primary">₹{getCartTotal()}</span>
+                <span className="font-bold text-xl text-primary"><span className="font-sans text-secondary/80 mr-0.5">₹</span>{getCartTotal()}</span>
               </div>
             </div>
             <Link to="/checkout" className="block w-full text-center bg-primary text-white py-3 rounded-md hover:bg-secondary hover:text-primary transition-colors font-bold">

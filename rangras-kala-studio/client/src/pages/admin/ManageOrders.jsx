@@ -58,7 +58,7 @@ const ManageOrders = () => {
                   <td className="px-6 py-4 font-medium text-gray-900">{order._id.substring(order._id.length - 6)}</td>
                   <td className="px-6 py-4">{order.date}</td>
                   <td className="px-6 py-4">{order.customerName}</td>
-                  <td className="px-6 py-4">₹{order.totalAmount}</td>
+                  <td className="px-6 py-4"><span className="font-sans mr-0.5">₹</span>{order.totalAmount}</td>
                   <td className="px-6 py-4">
                     <select
                       className="border border-gray-300 rounded p-1 text-sm outline-none focus:border-secondary"

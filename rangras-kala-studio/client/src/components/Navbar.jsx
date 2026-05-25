@@ -86,7 +86,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-6">
             {!isAdminRoute ? (
               <>
-                <Link to={user ? "/admin/dashboard" : "/admin"} className="text-text hover:text-secondary transition-colors duration-300" title="Admin">
+                <Link to={user ? (user.role === 'admin' ? "/admin/dashboard" : "/profile") : "/admin"} className="text-text hover:text-secondary transition-colors duration-300" title={user ? "Profile" : "Admin"}>
                   <FiUser className="h-5 w-5" />
                 </Link>
                 <Link to="/cart" className="text-text hover:text-secondary transition-colors relative group duration-300">
@@ -171,11 +171,11 @@ const Navbar = () => {
                   </button>
                 ) : (
                   <Link
-                    to={user ? "/admin/dashboard" : "/admin"}
+                    to={user ? (user.role === 'admin' ? "/admin/dashboard" : "/profile") : "/admin"}
                     className="flex items-center justify-center gap-2 px-4 py-3 text-primary bg-accent/20 rounded-xl font-medium"
                     onClick={() => setIsOpen(false)}
                   >
-                    <FiUser /> {user ? "Admin Dashboard" : "Admin Login"}
+                    <FiUser /> {user ? (user.role === 'admin' ? "Admin Dashboard" : "My Profile") : "Admin Login"}
                   </Link>
                 )}
               </div>

@@ -10,6 +10,8 @@ import Contact from './pages/Contact';
 import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
+import UserAuth from './pages/UserAuth';
+import UserOrders from './pages/UserOrders';
 
 // Admin Imports
 import AdminLogin from './pages/admin/AdminLogin';
@@ -27,8 +29,15 @@ import { Toaster } from 'react-hot-toast';
 // Simple Protected Route wrapper
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuth();
-  if (!user) return <Navigate to="/admin" />;
+  if (!user || user.role !== 'admin') return <Navigate to="/admin" />;
   return children;
+};
+
+// Route wrapper for /admin to bypass login if already authenticated
+const AdminRouteWrapper = () => {
+  const { user } = useAuth();
+  if (user && user.role === 'admin') return <Navigate to="/admin/dashboard" />;
+  return <AdminLogin />;
 };
 
 const pageTransition = {
@@ -67,9 +76,11 @@ const AnimatedRoutes = () => {
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/login" element={<UserAuth />} />
+          <Route path="/profile" element={<UserOrders />} />
 
           {/* Admin Routes */}
-          <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/admin" element={<AdminRouteWrapper />} />
           <Route path="/admin/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/admin/products" element={<ProtectedRoute><ManageProducts /></ProtectedRoute>} />
           <Route path="/admin/products/add" element={<ProtectedRoute><AddProduct /></ProtectedRoute>} />
@@ -82,19 +93,41 @@ const AnimatedRoutes = () => {
   );
 };
 
+const AppContent = () => {
+  const { token } = useAuth();
+  const location = useLocation();
+  const isAuth = token || localStorage.getItem('token');
+  
+  const isAdminRoute = location.pathname.startsWith('/admin');
+
+  // If not logged in and not trying to access the admin login, show the Login Portal ONLY
+  if (!isAuth && !isAdminRoute) {
+    return (
+      <>
+        <UserAuth />
+        <Toaster position="bottom-center" />
+      </>
+    );
+  }
+
+  return (
+    <div className="min-h-screen flex flex-col bg-background text-text font-body relative">
+      <Navbar />
+      <main className="flex-grow">
+        <AnimatedRoutes />
+      </main>
+      <Footer />
+      <Toaster position="bottom-center" />
+    </div>
+  );
+};
+
 function App() {
   return (
     <AuthProvider>
       <CartProvider>
         <Router>
-          <div className="min-h-screen flex flex-col bg-background text-text font-body">
-            <Navbar />
-            <main className="flex-grow">
-              <AnimatedRoutes />
-            </main>
-            <Footer />
-            <Toaster position="bottom-center" />
-          </div>
+          <AppContent />
         </Router>
       </CartProvider>
     </AuthProvider>

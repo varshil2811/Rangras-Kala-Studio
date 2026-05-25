@@ -53,7 +53,7 @@ const Dashboard = () => {
               </div>
               <div>
                 <p className="text-sm text-gray-500 font-medium">Total Revenue</p>
-                <p className="text-2xl font-bold text-gray-900">₹{stats.totalRevenue.toLocaleString('en-IN')}</p>
+                <p className="text-2xl font-bold text-gray-900"><span className="font-sans mr-0.5">₹</span>{stats.totalRevenue.toLocaleString('en-IN')}</p>
               </div>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 flex items-center">
@@ -102,7 +102,7 @@ const Dashboard = () => {
                           <tr key={order._id}>
                             <td className="px-6 py-4">#{order._id.substring(order._id.length - 6)}</td>
                             <td className="px-6 py-4">{order.customerName}</td>
-                            <td className="px-6 py-4">₹{order.totalAmount}</td>
+                            <td className="px-6 py-4"><span className="font-sans mr-0.5">₹</span>{order.totalAmount}</td>
                             <td className="px-6 py-4">
                               <span className={`px-2 py-1 rounded-full text-xs font-medium ${order.orderStatus === 'delivered' ? 'bg-green-100 text-green-800' :
                                 order.orderStatus === 'pending' ? 'bg-yellow-100 text-yellow-800' :

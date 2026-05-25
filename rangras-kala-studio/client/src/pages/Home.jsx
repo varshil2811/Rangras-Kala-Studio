@@ -308,7 +308,7 @@ const Home = () => {
                   </h3>
                   <div className="flex justify-between items-center">
                     <span className="text-lg text-secondary font-bold">
-                      ₹{product.price}
+                      <span className="font-sans text-secondary/80 mr-0.5">₹</span>{product.price}
                     </span>
                     <button className="text-sm bg-primary text-white px-3 py-1 rounded hover:bg-secondary hover:text-primary transition-colors">
                       Add to Cart

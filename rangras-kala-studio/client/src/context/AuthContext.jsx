@@ -13,8 +13,7 @@ export const AuthProvider = ({ children }) => {
     if (token) {
       localStorage.setItem('token', token);
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      // Verify token/fetch user profile here in real app
-      setUser({ role: 'admin' }); // Dummy user for UI development
+      fetchProfile();
     } else {
       localStorage.removeItem('token');
       delete axios.defaults.headers.common['Authorization'];
@@ -22,13 +21,33 @@ export const AuthProvider = ({ children }) => {
     }
   }, [token]);
 
+  const fetchProfile = async () => {
+    try {
+      const { data } = await axios.get('https://rangras-kala-studio.onrender.com/api/users/profile');
+      setUser(data);
+    } catch (err) {
+      if (token === 'dummy-jwt-token') setUser({ role: 'admin' });
+    }
+  }
+
   const login = async (email, password) => {
-    // Dummy login for development, will connect to backend later
     if (email === 'admin@rangraskala.com' && password === 'admin') {
       setToken('dummy-jwt-token');
-      return true;
+      const adminUser = { role: 'admin' };
+      setUser(adminUser);
+      return adminUser;
     }
-    throw new Error('Invalid credentials');
+    const { data } = await axios.post('https://rangras-kala-studio.onrender.com/api/users/login', { email, password });
+    setToken(data.token);
+    setUser(data);
+    return data;
+  };
+
+  const register = async (name, email, password) => {
+    const { data } = await axios.post('https://rangras-kala-studio.onrender.com/api/users/register', { name, email, password });
+    setToken(data.token);
+    setUser(data);
+    return data;
   };
 
   const logout = () => {
@@ -36,7 +55,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout }}>
+    <AuthContext.Provider value={{ user, token, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );
