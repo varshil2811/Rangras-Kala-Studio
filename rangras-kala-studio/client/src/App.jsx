@@ -12,6 +12,7 @@ import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import UserAuth from './pages/UserAuth';
 import UserOrders from './pages/UserOrders';
+import Chatbot from './components/Chatbot';
 
 // Admin Imports
 import AdminLogin from './pages/admin/AdminLogin';
@@ -97,7 +98,7 @@ const AppContent = () => {
   const { token } = useAuth();
   const location = useLocation();
   const isAuth = token || localStorage.getItem('token');
-  
+
   const isAdminRoute = location.pathname.startsWith('/admin');
 
   // If not logged in and not trying to access the admin login, show the Login Portal ONLY
@@ -117,6 +118,7 @@ const AppContent = () => {
         <AnimatedRoutes />
       </main>
       <Footer />
+      <Chatbot />
       <Toaster position="bottom-center" />
     </div>
   );

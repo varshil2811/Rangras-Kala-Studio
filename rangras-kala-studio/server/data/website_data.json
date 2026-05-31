@@ -1,0 +1,20 @@
+{
+  "aboutUs": "Rangras Kala Studio is an exclusive handmade art e-commerce platform offering a premium, Earthy Artisan Luxury experience. We specialize in custom artworks, traditional paintings, and personalized gift items crafted with passion and precision.",
+  "shippingPolicy": "We offer standard and express shipping. Standard shipping takes 5-7 business days, while express takes 2-3 business days. Free standard shipping on orders over ₹5000.",
+  "returnPolicy": "Since our artworks are custom-made, we do not accept returns unless the item arrives damaged. If damaged, please contact us within 48 hours of delivery.",
+  "contactInfo": {
+    "email": "support@rangraskala.com",
+    "phone": "+91-9876543210",
+    "address": "123 Artisan Lane, Mumbai, Maharashtra, India"
+  },
+  "faqs": [
+    {
+      "question": "Do you accept custom orders?",
+      "answer": "Yes, we accept custom orders! You can reach out to us via the Contact Us page or direct message us."
+    },
+    {
+      "question": "How long does it take to make a custom portrait?",
+      "answer": "Custom portraits typically take 2-3 weeks to complete depending on the complexity and medium."
+    }
+  ]
+}

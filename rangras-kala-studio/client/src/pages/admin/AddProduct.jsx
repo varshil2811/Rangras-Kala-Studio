@@ -49,7 +49,7 @@ const AddProduct = () => {
         }
       });
 
-      await axios.post('https://rangras-kala-studio.onrender.com/api/products', submitData, {
+      await axios.post('http://localhost:5000/api/products', submitData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
